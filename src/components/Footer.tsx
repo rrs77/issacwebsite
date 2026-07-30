@@ -8,8 +8,8 @@ export function Footer() {
         <div>
           <Logo light />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sage-soft">
-            Friendly, personalised Maths and Combined Science support for students from Year 7
-            through to GCSE — from a student who recently achieved Grade 9 in both.
+            Friendly, personalised Edexcel Maths and AQA Science support for Year 7 through to
+            GCSE — from a peer tutor who recently achieved Grade 9.
           </p>
         </div>
 
@@ -21,6 +21,16 @@ export function Footer() {
             <li>
               <Link href="/maths" className="hover:text-white">
                 Mathematics
+              </Link>
+            </li>
+            <li>
+              <Link href="/biology" className="hover:text-white">
+                Biology
+              </Link>
+            </li>
+            <li>
+              <Link href="/chemistry" className="hover:text-white">
+                Chemistry
               </Link>
             </li>
             <li>
@@ -48,7 +58,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-sage-soft">
             <li>£45 per hour</li>
             <li>Online lessons available</li>
-            <li>Home visits within 3 miles of Oaklands School, Chelmsford</li>
+            <li>Home visits within 1–2 miles of Oaklands School, Chelmsford</li>
             <li>
               <Link href="/contact" className="font-semibold text-gold-soft hover:text-white">
                 Get in touch →

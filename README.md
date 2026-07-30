@@ -1,6 +1,6 @@
 # Old Moulsham Tutoring
 
-Personalised Maths and Combined Science tutoring website for Year 7–GCSE students in Chelmsford.
+Personalised Edexcel Maths and AQA Science tutoring website for Year 7–GCSE students in Chelmsford.
 
 ## Run locally
 

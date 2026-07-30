@@ -1,5 +1,6 @@
 import { type FormEvent, type ReactNode, useState } from "react";
 import { CheckCircle2, Mail } from "lucide-react";
+import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
 import { FadeIn, SectionHeading } from "@/components/ui";
 
 const CONTACT_EMAIL = "isaacjackrs@gmail.com";
@@ -8,7 +9,10 @@ type FormState = {
   name: string;
   email: string;
   phone: string;
+  yearGroup: string;
   subject: string;
+  currentGrade: string;
+  predictedGrade: string;
   location: string;
   message: string;
 };
@@ -17,10 +21,22 @@ const INITIAL: FormState = {
   name: "",
   email: "",
   phone: "",
-  subject: "Mathematics",
+  yearGroup: "Year 10",
+  subject: "Mathematics (Edexcel)",
+  currentGrade: "",
+  predictedGrade: "",
   location: "Online",
   message: "",
 };
+
+const YEAR_GROUPS = [
+  "Year 7",
+  "Year 8",
+  "Year 9",
+  "Year 10",
+  "Year 11",
+  "Other / not sure",
+];
 
 export function ContactPage() {
   const [form, setForm] = useState<FormState>(INITIAL);
@@ -35,8 +51,13 @@ export function ContactPage() {
     e.preventDefault();
     setError("");
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setError("Please add your name, email and a short message.");
+    if (
+      !form.name.trim() ||
+      !form.email.trim() ||
+      !form.message.trim() ||
+      !form.yearGroup.trim()
+    ) {
+      setError("Please add your name, email, year group and a short message.");
       return;
     }
 
@@ -44,14 +65,17 @@ export function ContactPage() {
       `Name: ${form.name.trim()}`,
       `Email: ${form.email.trim()}`,
       `Phone: ${form.phone.trim() || "Not provided"}`,
+      `Year group: ${form.yearGroup}`,
       `Subject interest: ${form.subject}`,
+      `Current grade: ${form.currentGrade.trim() || "Not provided"}`,
+      `Predicted grade: ${form.predictedGrade.trim() || "Not provided"}`,
       `Preferred format: ${form.location}`,
       "",
       form.message.trim(),
     ].join("\n");
 
     const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      `Tuition enquiry — ${form.subject}`,
+      `Tuition enquiry — ${form.subject} (${form.yearGroup})`,
     )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;
@@ -64,8 +88,9 @@ export function ContactPage() {
         <div className="safe-px mx-auto max-w-6xl py-14 sm:py-16">
           <FadeIn>
             <SectionHeading eyebrow="Contact" title="Let’s plan a lesson that fits">
-              Share a little about the student and what you’d like help with. I’ll reply to arrange
-              a suitable time — online or at home near Oaklands School.
+              Tell me your year group, subject and current or predicted grades so I can prepare
+              the right exercises. I’ll reply to arrange a suitable time — online or at home near
+              Oaklands School.
             </SectionHeading>
           </FadeIn>
         </div>
@@ -85,17 +110,20 @@ export function ContactPage() {
                   {CONTACT_EMAIL}
                 </a>
                 <p className="mt-4 text-sm text-mint/85">
-                  Tuition is £45 per hour for Maths and Combined Science (Year 7–GCSE).
+                  Tuition is £45 per hour for Maths, Biology, Chemistry and AQA Combined Science
+                  (Year 7–GCSE).
                 </p>
               </div>
 
               <div className="rounded-2xl bg-mint/80 px-6 py-6 text-sm text-ink-soft">
                 <p className="font-display text-base font-bold text-ink">Before you write</p>
                 <ul className="mt-3 list-disc space-y-2 pl-5">
-                  <li>Year group and subject(s)</li>
+                  <li>Year group</li>
+                  <li>Subject(s) and exam board/tier if known</li>
+                  <li>Current and predicted grades</li>
                   <li>Topics that feel challenging</li>
-                  <li>Whether you’d prefer online or home tuition</li>
-                  <li>Any preferred days or times</li>
+                  <li>Whether you’d prefer online or home tuition (within 1–2 miles)</li>
+                  <li>Any preferred days or times from the calendar</li>
                 </ul>
               </div>
             </div>
@@ -105,7 +133,9 @@ export function ContactPage() {
             {submitted ? (
               <div className="flex h-full min-h-[22rem] flex-col items-start justify-center rounded-2xl bg-white px-6 py-10 ring-1 ring-teal/10 sm:px-8">
                 <CheckCircle2 className="h-10 w-10 text-teal" strokeWidth={1.75} />
-                <h2 className="mt-4 font-display text-2xl font-bold text-ink">Thanks for getting in touch</h2>
+                <h2 className="mt-4 font-display text-2xl font-bold text-ink">
+                  Thanks for getting in touch
+                </h2>
                 <p className="mt-3 max-w-md text-ink-soft">
                   Your email app should open with a prepared message. If it doesn’t, send your
                   enquiry directly to{" "}
@@ -168,6 +198,20 @@ export function ContactPage() {
                       className="field-input"
                     />
                   </Field>
+                  <Field label="Year group" htmlFor="yearGroup">
+                    <select
+                      id="yearGroup"
+                      name="yearGroup"
+                      value={form.yearGroup}
+                      onChange={(e) => update("yearGroup", e.target.value)}
+                      className="field-input"
+                      required
+                    >
+                      {YEAR_GROUPS.map((year) => (
+                        <option key={year}>{year}</option>
+                      ))}
+                    </select>
+                  </Field>
                   <Field label="Subject" htmlFor="subject">
                     <select
                       id="subject"
@@ -176,12 +220,14 @@ export function ContactPage() {
                       onChange={(e) => update("subject", e.target.value)}
                       className="field-input"
                     >
-                      <option>Mathematics</option>
-                      <option>Combined Science</option>
-                      <option>Both</option>
+                      <option>Mathematics (Edexcel)</option>
+                      <option>Biology (AQA)</option>
+                      <option>Chemistry (AQA)</option>
+                      <option>Combined Science (AQA)</option>
+                      <option>More than one subject</option>
                     </select>
                   </Field>
-                  <Field label="Preferred format" htmlFor="location" className="sm:col-span-2">
+                  <Field label="Preferred format" htmlFor="location">
                     <select
                       id="location"
                       name="location"
@@ -190,9 +236,29 @@ export function ContactPage() {
                       className="field-input"
                     >
                       <option>Online</option>
-                      <option>Home (within 3 miles of Oaklands School)</option>
+                      <option>Home (within 1–2 miles of Oaklands School)</option>
                       <option>Not sure yet</option>
                     </select>
+                  </Field>
+                  <Field label="Current grade" htmlFor="currentGrade">
+                    <input
+                      id="currentGrade"
+                      name="currentGrade"
+                      value={form.currentGrade}
+                      onChange={(e) => update("currentGrade", e.target.value)}
+                      className="field-input"
+                      placeholder="e.g. 5, 6–7, Foundation"
+                    />
+                  </Field>
+                  <Field label="Predicted grade" htmlFor="predictedGrade">
+                    <input
+                      id="predictedGrade"
+                      name="predictedGrade"
+                      value={form.predictedGrade}
+                      onChange={(e) => update("predictedGrade", e.target.value)}
+                      className="field-input"
+                      placeholder="e.g. 7, 8–9"
+                    />
                   </Field>
                   <Field label="Message" htmlFor="message" className="sm:col-span-2">
                     <textarea
@@ -202,7 +268,7 @@ export function ContactPage() {
                       value={form.message}
                       onChange={(e) => update("message", e.target.value)}
                       className="field-input resize-y min-h-[8rem]"
-                      placeholder="Year group, topics to focus on, and any timing preferences…"
+                      placeholder="Topics to focus on, Foundation/Higher if Maths, and any timing preferences from the calendar…"
                       required
                     />
                   </Field>
@@ -225,6 +291,14 @@ export function ContactPage() {
                 </p>
               </form>
             )}
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="atmosphere border-t border-teal/10">
+        <div className="safe-px mx-auto max-w-6xl py-14 sm:py-16">
+          <FadeIn>
+            <AvailabilityCalendar />
           </FadeIn>
         </div>
       </section>

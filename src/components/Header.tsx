@@ -6,6 +6,8 @@ import { Logo } from "@/components/Logo";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/maths", label: "Maths" },
+  { href: "/biology", label: "Biology" },
+  { href: "/chemistry", label: "Chemistry" },
   { href: "/science", label: "Combined Science" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -44,14 +46,14 @@ export function Header() {
           <Logo compact />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
           {NAV.map((item) => {
             const active = location === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3.5 py-2 text-sm font-semibold transition-colors ${
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
                   active
                     ? "bg-mint text-teal"
                     : "text-ink-soft hover:bg-mint/70 hover:text-teal"
@@ -71,7 +73,7 @@ export function Header() {
 
         <button
           type="button"
-          className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-md text-teal lg:hidden"
+          className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-md text-teal xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -83,7 +85,7 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`lg:hidden ${open ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"} fixed inset-0 top-[4.75rem] z-40 transition-opacity duration-200`}
+        className={`xl:hidden ${open ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"} fixed inset-0 top-[4.75rem] z-40 transition-opacity duration-200`}
       >
         <button
           type="button"
@@ -92,7 +94,7 @@ export function Header() {
           onClick={() => setOpen(false)}
         />
         <nav
-          className="relative mx-3 mt-2 overflow-hidden rounded-xl border border-teal/10 bg-white p-3 shadow-lg sm:mx-4"
+          className="relative mx-3 mt-2 max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-xl border border-teal/10 bg-white p-3 shadow-lg sm:mx-4"
           aria-label="Mobile"
         >
           {NAV.map((item) => {

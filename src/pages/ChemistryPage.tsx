@@ -1,52 +1,52 @@
-import { Calculator, LineChart, Shapes, Target } from "lucide-react";
+import { Atom, Beaker, Flame, Target } from "lucide-react";
 import { CtaButton, FadeIn, SectionHeading } from "@/components/ui";
 
 const TOPICS = [
   {
-    title: "Number and calculation",
-    body: "Place value, fractions, decimals, percentages and standard form — the slips that cost easy marks on Edexcel papers.",
+    title: "Atomic structure and the periodic table",
+    body: "Electron configuration, ions and trends — building the foundation for bonding and reactivity questions.",
   },
   {
-    title: "Algebra and equations",
-    body: "Expanding, factorising, simultaneous equations and graphs. We practise the exact styles of question your tier uses.",
+    title: "Bonding, structure and properties",
+    body: "Ionic, covalent and metallic bonding with clear diagrams, plus linking structure to melting point and conductivity.",
   },
   {
-    title: "Ratio, proportion and rates of change",
-    body: "Recipes, maps, compound measures and proportional reasoning — where wording often causes avoidable mistakes.",
+    title: "Quantitative chemistry",
+    body: "Moles, concentration, percentage yield and atom economy — the calculation questions that often decide grades.",
   },
   {
-    title: "Geometry and measures",
-    body: "Angles, circle theorems (Higher), Pythagoras, trigonometry and area/volume — with diagrams drawn the way examiners expect.",
+    title: "Chemical changes and energy",
+    body: "Acids, electrolysis, exothermic/endothermic reactions and reaction profiles from AQA paper styles.",
   },
   {
-    title: "Probability and statistics",
-    body: "Tree diagrams, Venn diagrams, averages and interpreting data — including how to structure answers for method marks.",
+    title: "Rates, equilibria and organic chemistry",
+    body: "Collision theory, reversible reactions and hydrocarbons — with graphs and “explain” answers that use the right science words.",
   },
   {
-    title: "Problem-solving and exam technique",
-    body: "Multi-mark questions, checking strategies and timing across Paper 1 (non-calculator) and Papers 2 & 3 (calculator).",
+    title: "Analysis, atmosphere and resources",
+    body: "Chromatography, gases of the atmosphere and sustainable resources — including required practical technique.",
   },
 ];
 
-export function MathsPage() {
+export function ChemistryPage() {
   return (
     <>
       <section className="hero-atmosphere relative overflow-hidden text-white">
         <div className="mesh-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
         <div className="safe-px relative mx-auto max-w-6xl py-16 sm:py-20">
           <p className="text-xs font-bold tracking-[0.18em] text-gold-soft uppercase">
-            Mathematics · Edexcel
+            Chemistry · AQA
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-balance text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Maths tuition that builds clarity and exam confidence
+            Chemistry tuition built around AQA exam questions
           </h1>
           <p className="mt-5 max-w-2xl text-base text-mint/90 sm:text-lg">
-            Personalised Edexcel Mathematics support for Year 7 through to GCSE — Foundation or
-            Higher. I recently achieved Grade 9 and know how the specification and papers are
-            structured.
+            Personalised AQA Chemistry support for Year 7 to GCSE. I studied AQA Science and
+            achieved Grade 9 — lessons focus on calculations, bonding models and the question
+            styles that regularly lose marks.
           </p>
           <div className="mt-8">
-            <CtaButton href="/contact">Enquire about Maths</CtaButton>
+            <CtaButton href="/contact">Enquire about Chemistry</CtaButton>
           </div>
         </div>
       </section>
@@ -54,35 +54,34 @@ export function MathsPage() {
       <section className="atmosphere">
         <div className="safe-px mx-auto max-w-6xl py-16 sm:py-20">
           <FadeIn>
-            <SectionHeading title="Support tailored to your tier and papers">
-              Whether you are on Foundation or Higher, we work from the Edexcel GCSE Maths
-              specification and past-paper style questions. Common sticking points — rearranging
-              formulae, ratio worded problems, circle theorems, or non-calculator fluency — get
-              targeted practice until the method feels automatic.
+            <SectionHeading title="Calculations, concepts and mark schemes">
+              Chemistry often feels hard because ideas and maths sit together. We break topics into
+              clear steps, then practise the AQA calculation and explanation questions that match
+              your specification — moles, titration maths, electrolysis and rates graphs included.
             </SectionHeading>
           </FadeIn>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: Calculator,
-                title: "Clear methods",
-                body: "Step-by-step approaches that match how Edexcel awards method and accuracy marks.",
+                icon: Atom,
+                title: "Specification first",
+                body: "Content mapped to AQA Chemistry topics so every lesson links to what you are assessed on.",
               },
               {
-                icon: Shapes,
-                title: "Visual thinking",
-                body: "Diagrams and models to unlock geometry, graphs and spatial problems.",
+                icon: Beaker,
+                title: "Calculation confidence",
+                body: "Moles, concentration and yield practised with the layouts examiners expect to see.",
               },
               {
-                icon: LineChart,
-                title: "Steady progress",
-                body: "Targeted practice on the topics your recent papers show are costing marks.",
+                icon: Flame,
+                title: "Real sticking points",
+                body: "Bonding diagrams, half-equations and “suggest” questions that need precise wording.",
               },
               {
                 icon: Target,
-                title: "Exam focus",
-                body: "Timing, command words and common pitfalls — so marks are not left behind.",
+                title: "Exam technique",
+                body: "Command words, significant figures and method marks — so working is not wasted.",
               },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={0.05 * i}>
@@ -101,8 +100,8 @@ export function MathsPage() {
         <div className="safe-px mx-auto max-w-6xl py-16 sm:py-20">
           <FadeIn>
             <SectionHeading eyebrow="Coverage" title="What we can work on">
-              Sessions can focus on a single stubborn topic or build a broader revision plan across
-              the Edexcel specification for your tier.
+              We can focus on one stubborn unit or revise more widely across the AQA Chemistry
+              content you need for your papers.
             </SectionHeading>
           </FadeIn>
 
@@ -125,11 +124,11 @@ export function MathsPage() {
           <FadeIn>
             <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-ink-soft">
-                Maths tuition: <span className="font-bold text-ink">£45 per hour</span> · online or
-                home (within 1–2 miles of Oaklands School)
+                Chemistry tuition: <span className="font-bold text-ink">£45 per hour</span> · online
+                or home (within 1–2 miles of Oaklands School)
               </p>
               <CtaButton href="/contact" variant="teal">
-                Book Maths tuition
+                Book Chemistry tuition
               </CtaButton>
             </div>
           </FadeIn>

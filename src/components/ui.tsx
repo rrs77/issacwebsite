@@ -95,29 +95,3 @@ export function FadeIn({
   );
 }
 
-export function HeroGraphic() {
-  return (
-    <div
-      className="relative mx-auto flex w-full max-w-[220px] items-center justify-center sm:max-w-[260px] lg:ml-auto lg:mr-0"
-      aria-hidden
-    >
-      <div className="animate-float absolute inset-[8%] rounded-2xl bg-gradient-to-br from-gold/30 via-cream/20 to-transparent blur-xl" />
-      <div className="relative overflow-hidden rounded-xl bg-cream shadow-[0_16px_40px_rgba(18,49,41,0.3)] ring-1 ring-white/20">
-        <img
-          src={`${import.meta.env.BASE_URL}logo.png`}
-          alt=""
-          className="mx-auto h-auto w-full max-w-[200px] p-3 sm:max-w-[220px]"
-          width={220}
-          height={220}
-          decoding="async"
-        />
-        <div className="border-t border-ink/5 px-4 py-3 text-center">
-          <p className="font-display text-xs font-bold tracking-[0.12em] text-ink uppercase">
-            Grade 9 · Maths &amp; Science
-          </p>
-          <div className="mx-auto mt-2 h-0.5 w-10 origin-left -rotate-3 bg-gold" />
-        </div>
-      </div>
-    </div>
-  );
-}
